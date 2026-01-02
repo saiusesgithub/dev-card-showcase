@@ -31,7 +31,15 @@
     <!-- Main heading of the website -->
     <h1>🚀 Community Hall of Fame</h1>
     <p class="subtitle">An Open Source Project built by the Community, for the Community.</p>
-
+    
+<!-- 🔍 SEARCH INPUT (ADDED) -->
+<input 
+    type="text" 
+    id="searchInput" 
+    placeholder="Search contributor by name..."
+    onkeyup="filterCards()"
+    style="padding:10px; width:300px; max-width:90%; margin:20px auto; display:block;"
+>
     <!-- Container that holds all the profile cards -->
     <div class="card-container">
 
@@ -199,5 +207,17 @@
     });
     </script>
 
+<!-- 🔍 SEARCH FILTER SCRIPT (ADDED) -->
+<script>
+function filterCards() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const name = card.querySelector("h2").innerText.toLowerCase();
+        card.style.display = name.includes(input) ? "block" : "none";
+    });
+}
+</script>
 </body>
 </html>

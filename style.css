@@ -244,3 +244,46 @@ h1 {
     border: 1px solid #005a81;
 }
 
+/* 🔍 Glassy Search Bar */
+#searchInput {
+  padding: 14px 18px;
+  width: 340px;
+  max-width: 90%;
+  margin: 30px auto;
+  display: block;
+
+  font-size: 16px;
+  color: #fff;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+
+  outline: none;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25);
+
+  transition: all 0.3s ease;
+}
+
+/* Placeholder */
+#searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus effect */
+#searchInput:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 40px rgba(79, 70, 229, 0.45);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Mobile tweak */
+@media (max-width: 480px) {
+  #searchInput {
+    width: 92%;
+    font-size: 15px;
+  }
+}
