@@ -29,14 +29,44 @@
         padding: 16px;
         border-radius: 12px;
         box-shadow: var(--shadow-sm);
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        animation: projectCardAppear 0.5s ease-out forwards;
+        animation-delay: calc(var(--project-index, 0) * 0.08s);
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @keyframes projectCardAppear {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: var(--shadow-md);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: var(--shadow-lg), 0 0 20px rgba(56, 189, 248, 0.2);
+        border-color: var(--primary-color);
+      }
+
+      .project-card:hover h2 {
+        color: var(--primary-color);
+        transform: translateY(-1px);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover .project-desc {
+        transform: translateY(-1px);
+        transition: transform 0.3s ease;
       }
 
       .project-desc {
@@ -2513,6 +2543,30 @@ Convert input text into styled or fancy Unicode fonts for social media with one-
           }
         });
       }
+    </script>
+
+    <!-- Project Card Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up staggered project card animations
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.setProperty('--project-index', index);
+            });
+
+            // Add enhanced hover interactions for project cards
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // Add subtle glow effect
+                    this.style.boxShadow = 'var(--shadow-lg), 0 0 25px rgba(56, 189, 248, 0.3)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    // Reset shadow
+                    this.style.boxShadow = 'var(--shadow-sm)';
+                });
+            });
+        });
     </script>
 
     <!-- Theme Toggle Script -->

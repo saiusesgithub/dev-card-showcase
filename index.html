@@ -1186,6 +1186,50 @@ document.addEventListener("DOMContentLoaded", () => {
             themeToggle.addEventListener('click', toggleTheme);
         });
     </script>
+
+    <!-- Card Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up staggered card animations
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.setProperty('--card-index', index);
+            });
+
+            // Add enhanced hover interactions
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // Add subtle pulse effect to the image
+                    const img = this.querySelector('.card-img');
+                    if (img) {
+                        img.style.animation = 'none';
+                        setTimeout(() => {
+                            img.style.animation = 'imagePulse 0.6s ease-in-out';
+                        }, 10);
+                    }
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    // Reset any hover states
+                    const img = this.querySelector('.card-img');
+                    if (img) {
+                        img.style.animation = '';
+                    }
+                });
+            });
+        });
+
+        // Add image pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes imagePulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 
 </html>
