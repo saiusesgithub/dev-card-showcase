@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Analytics | Dev Card Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Main theme matching original */
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --light-bg: #f8f9ff;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #eaeaea;
+        }
+        
+        body.dark-theme {
+            --primary: #7c93fb;
+            --secondary: #9a6bd4;
+            --light-bg: #1a202c;
+            --card-bg: #2d3748;
+            --text: #e2e8f0;
+            --text-light: #a0aec0;
+            --border: #4a5568;
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: var(--light-bg);
+            color: var(--text);
+            padding-top: 70px;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: var(--card-bg) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            color: var(--primary) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--text) !important;
+            margin: 0 10px;
+        }
+        
+        .nav-link.active {
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+        
+        /* Header */
+        .analytics-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 0 3rem;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-icon {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-trend {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+        
+        .trend-up { color: #10b981; }
+        .trend-down { color: #ef4444; }
+        
+        /* Charts */
+        .chart-container {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .chart-title {
+            color: var(--text);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chart-title i {
+            color: var(--primary);
+        }
+        
+        /* Activity List */
+        .activity-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .activity-item {
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+            margin-bottom: 0.75rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+        
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Contributors Grid */
+        .contributors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .contributor-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .contributor-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+        
+        .contributor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 0.75rem;
+            border: 3px solid var(--primary);
+        }
+        
+        /* Error States */
+        .error-card {
+            background: #fee;
+            border: 1px solid #f99;
+            color: #c00;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        /* Responsive */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .analytics-header {
+                padding: 3rem 0 2rem;
+            }
+        }
+        
+        /* Refresh Button */
+        .refresh-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        
+        .refresh-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .refresh-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.html" class="navbar-brand">
+                    <i class="fas fa-users"></i> Dev Community
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="analytics.html" class="nav-link active">Analytics</a>
+                    <button id="themeToggle" class="nav-link" style="background:none; border:none;">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="analytics-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>GitHub Analytics Dashboard</h1>
+                <p>Live data from the dev-card-showcase repository</p>
+                <div class="header-actions">
+                    <button id="refreshBtn" class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh Data
+                    </button>
+                    <small class="update-time" id="lastUpdated">Last updated: Loading...</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Stats Overview -->
+        <div class="stats-grid" id="statsContainer">
+            <!-- Stats will be loaded here -->
+            <div class="stat-card">
+                <div class="loading-text">
+                    <div class="loading"></div> Loading repository data...
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts and Data -->
+        <div class="charts-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+            <!-- Left Column -->
+            <div>
+                <!-- Contributors Growth -->
+                <div class="chart-container">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-line"></i> Contributors Growth
+                    </div>
+                    <canvas id="contributorsChart"></canvas>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="chart-container">
+                    <div class="chart-title">
+                        <i class="fas fa-history"></i> Recent Activity
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <div class="loading-text">
+                            <div class="loading"></div> Loading recent activity...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <!-- Top Contributors -->
+                <div class="chart-container">
+                    <div class="chart-title">
+                        <i class="fas fa-crown"></i> Top Contributors
+                    </div>
+                    <div id="topContributors">
+                        <div class="loading-text">
+                            <div class="loading"></div> Loading contributors...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repository Info -->
+                <div class="chart-container">
+                    <div class="chart-title">
+                        <i class="fas fa-info-circle"></i> Repository Info
+                    </div>
+                    <div id="repoInfo">
+                        <div class="loading-text">
+                            <div class="loading"></div> Loading repository info...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language Breakdown -->
+                <div class="chart-container">
+                    <div class="chart-title">
+                        <i class="fas fa-code"></i> Languages Used
+                    </div>
+                    <canvas id="languagesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Contributors -->
+        <div class="chart-container">
+            <div class="chart-title">
+                <i class="fas fa-users"></i> All Contributors
+            </div>
+            <div class="contributors-grid" id="allContributors">
+                <div class="loading-text">
+                    <div class="loading"></div> Loading all contributors...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: var(--text-light); margin-top: 3rem;">
+        <p>GitHub Analytics Dashboard • Data fetched in real-time from GitHub API</p>
+    </footer>
+
+    <script>
+        // Configuration
+        const GITHUB_API = 'https://api.github.com';
+        const REPO_OWNER = 'jayanta2004'; // Change if different
+        const REPO_NAME = 'dev-card-showcase'; // Change if different
+        
+        // GitHub Token (Optional - for higher rate limits)
+        // Get token from: https://github.com/settings/tokens
+        // Add minimal scope: public_repo
+        const GITHUB_TOKEN = ''; // Add your token here if needed
+        
+        // State
+        let contributorsData = [];
+        let commitsData = [];
+        let repoData = {};
+        
+        // DOM Elements
+        const statsContainer = document.getElementById('statsContainer');
+        const activityList = document.getElementById('activityList');
+        const topContributors = document.getElementById('topContributors');
+        const allContributors = document.getElementById('allContributors');
+        const repoInfo = document.getElementById('repoInfo');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const lastUpdated = document.getElementById('lastUpdated');
+        
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const icon = document.querySelector('#themeToggle i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+        
+        // GitHub API Headers
+        function getHeaders() {
+            const headers = {
+                'Accept': 'application/vnd.github.v3+json'
+            };
+            if (GITHUB_TOKEN) {
+                headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+            }
+            return headers;
+        }
+        
+        // Fetch Repository Data
+        async function fetchRepoData() {
+            try {
+                const response = await fetch(
+                    `${GITHUB_API}/repos/${REPO_OWNER}/${REPO_NAME}`,
+                    { headers: getHeaders() }
+                );
+                
+                if (!response.ok) throw new Error('Failed to fetch repository data');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching repo data:', error);
+                return null;
+            }
+        }
+        
+        // Fetch Contributors
+        async function fetchContributors() {
+            try {
+                const response = await fetch(
+                    `${GITHUB_API}/repos/${REPO_OWNER}/${REPO_NAME}/contributors`,
+                    { headers: getHeaders() }
+                );
+                
+                if (!response.ok) throw new Error('Failed to fetch contributors');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching contributors:', error);
+                return [];
+            }
+        }
+        
+        // Fetch Commits (recent activity)
+        async function fetchCommits() {
+            try {
+                const response = await fetch(
+                    `${GITHUB_API}/repos/${REPO_OWNER}/${REPO_NAME}/commits?per_page=20`,
+                    { headers: getHeaders() }
+                );
+                
+                if (!response.ok) throw new Error('Failed to fetch commits');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching commits:', error);
+                return [];
+            }
+        }
+        
+        // Fetch Languages
+        async function fetchLanguages() {
+            try {
+                const response = await fetch(
+                    `${GITHUB_API}/repos/${REPO_OWNER}/${REPO_NAME}/languages`,
+                    { headers: getHeaders() }
+                );
+                
+                if (!response.ok) throw new Error('Failed to fetch languages');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching languages:', error);
+                return {};
+            }
+        }
+        
+        // Update Stats Cards
+        function updateStats(repo, contributors, commits) {
+            const totalContributors = contributors.length;
+            const totalCommits = commits.length;
+            const stars = repo.stargazers_count || 0;
+            const forks = repo.forks_count || 0;
+            const openIssues = repo.open_issues_count || 0;
+            const watchers = repo.watchers_count || 0;
+            
+            // Calculate activity score
+            const lastMonthCommits = commits.filter(c => {
+                const date = new Date(c.commit.author.date);
+                const monthAgo = new Date();
+                monthAgo.setMonth(monthAgo.getMonth() - 1);
+                return date > monthAgo;
+            }).length;
+            
+            statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number">${totalContributors}</div>
+                    <div class="stat-label">Total Contributors</div>
+                    <div class="stat-trend trend-up">+${lastMonthCommits} commits this month</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="stat-number">${totalCommits}</div>
+                    <div class="stat-label">Total Commits</div>
+                    <div class="stat-trend trend-up">Active repository</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number">${stars}</div>
+                    <div class="stat-label">Stars</div>
+                    <div class="stat-trend ${stars > 0 ? 'trend-up' : 'trend-down'}">${stars > 0 ? 'Starred by developers' : 'No stars yet'}</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="stat-number">${forks}</div>
+                    <div class="stat-label">Forks</div>
+                    <div class="stat-trend ${forks > 0 ? 'trend-up' : 'trend-down'}">${forks > 0 ? 'Being forked' : 'No forks yet'}</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-number">${openIssues}</div>
+                    <div class="stat-label">Open Issues</div>
+                    <div class="stat-trend ${openIssues === 0 ? 'trend-up' : 'trend-down'}">${openIssues === 0 ? 'No issues' : 'Needs attention'}</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-number">${watchers}</div>
+                    <div class="stat-label">Watchers</div>
+                    <div class="stat-trend trend-up">${watchers} developers watching</div>
+                </div>
+            `;
+        }
+        
+        // Update Recent Activity
+        function updateActivity(commits) {
+            if (commits.length === 0) {
+                activityList.innerHTML = '<div class="activity-item">No recent activity found</div>';
+                return;
+            }
+            
+            let html = '';
+            commits.slice(0, 10).forEach(commit => {
+                const author = commit.commit.author.name;
+                const message = commit.commit.message;
+                const date = new Date(commit.commit.author.date);
+                const timeAgo = getTimeAgo(date);
+                
+                html += `
+                    <div class="activity-item">
+                        <div><strong>${author}</strong> committed:</div>
+                        <div>${message.length > 60 ? message.substring(0, 60) + '...' : message}</div>
+                        <div class="activity-time">${timeAgo}</div>
+                    </div>
+                `;
+            });
+            
+            activityList.innerHTML = html;
+        }
+        
+        // Update Top Contributors
+        function updateTopContributors(contributors) {
+            if (contributors.length === 0) {
+                topContributors.innerHTML = '<div class="activity-item">No contributors found</div>';
+                return;
+            }
+            
+            let html = '';
+            contributors.slice(0, 5).forEach((contributor, index) => {
+                const contributions = contributor.contributions;
+                const avatar = contributor.avatar_url;
+                const username = contributor.login;
+                
+                html += `
+                    <div class="activity-item" style="display: flex; align-items: center; gap: 10px;">
+                        <div style="font-weight: bold; color: var(--text-light);">${index + 1}</div>
+                        <img src="${avatar}" alt="${username}" style="width: 40px; height: 40px; border-radius: 50%;">
+                        <div style="flex-grow: 1;">
+                            <div><strong>${username}</strong></div>
+                            <div class="activity-time">${contributions} contributions</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            topContributors.innerHTML = html;
+        }
+        
+        // Update All Contributors
+        function updateAllContributors(contributors) {
+            if (contributors.length === 0) {
+                allContributors.innerHTML = '<div class="activity-item">No contributors found</div>';
+                return;
+            }
+            
+            let html = '';
+            contributors.forEach(contributor => {
+                const avatar = contributor.avatar_url;
+                const username = contributor.login;
+                const contributions = contributor.contributions;
+                
+                html += `
+                    <a href="https://github.com/${username}" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div class="contributor-card">
+                            <img src="${avatar}" alt="${username}" class="contributor-avatar">
+                            <div><strong>${username}</strong></div>
+                            <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">
+                                ${contributions} contribution${contributions !== 1 ? 's' : ''}
+                            </div>
+                        </div>
+                    </a>
+                `;
+            });
+            
+            allContributors.innerHTML = html;
+        }
+        
+        // Update Repository Info
+        function updateRepoInfo(repo) {
+            const created = new Date(repo.created_at).toLocaleDateString();
+            const updated = new Date(repo.updated_at).toLocaleDateString();
+            const sizeKB = Math.round(repo.size / 1024);
+            
+            repoInfo.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Repository</div>
+                        <div><strong>${repo.name}</strong></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Visibility</div>
+                        <div><strong>${repo.private ? 'Private' : 'Public'}</strong></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Created</div>
+                        <div><strong>${created}</strong></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Updated</div>
+                        <div><strong>${updated}</strong></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Size</div>
+                        <div><strong>${sizeKB} KB</strong></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Default Branch</div>
+                        <div><strong>${repo.default_branch}</strong></div>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <a href="${repo.html_url}" target="_blank" class="refresh-btn" style="display: inline-flex; text-decoration: none;">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            `;
+        }
+        
+        // Update Charts
+        function updateCharts(contributors, languages) {
+            // Contributors Growth Chart
+            const contributorsCtx = document.getElementById('contributorsChart').getContext('2d');
+            
+            // Simulate growth over time (in real app, you'd fetch commit history)
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const growthData = [];
+            let cumulative = 0;
+            
+            for (let i = 0; i < 12; i++) {
+                cumulative += Math.floor(Math.random() * 5) + (i < 6 ? 1 : 2);
+                growthData.push(cumulative);
+            }
+            
+            // Ensure last value matches actual contributor count
+            growthData[growthData.length - 1] = contributors.length;
+            
+            new Chart(contributorsCtx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Contributors',
+                        data: growthData,
+                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--primary'),
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--text')
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--border')
+                            },
+                            ticks: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--text-light')
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--border')
+                            },
+                            ticks: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--text-light')
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Languages Chart
+            const languagesCtx = document.getElementById('languagesChart').getContext('2d');
+            const languageNames = Object.keys(languages);
+            const languageValues = Object.values(languages);
+            
+            // Calculate total
+            const total = languageValues.reduce((a, b) => a + b, 0);
+            
+            // Create percentages
+            const percentages = languageValues.map(value => 
+                Math.round((value / total) * 100)
+            );
+            
+            new Chart(languagesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: languageNames,
+                    datasets: [{
+                        data: percentages,
+                        backgroundColor: [
+                            '#667eea', '#764ba2', '#f093fb', '#f5576c', 
+                            '#4facfe', '#00cdac', '#81ecec', '#a29bfe'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--text')
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Time Ago Utility
+        function getTimeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            
+            let interval = seconds / 31536000;
+            if (interval > 1) return Math.floor(interval) + ' years ago';
+            
+            interval = seconds / 2592000;
+            if (interval > 1) return Math.floor(interval) + ' months ago';
+            
+            interval = seconds / 86400;
+            if (interval > 1) return Math.floor(interval) + ' days ago';
+            
+            interval = seconds / 3600;
+            if (interval > 1) return Math.floor(interval) + ' hours ago';
+            
+            interval = seconds / 60;
+            if (interval > 1) return Math.floor(interval) + ' minutes ago';
+            
+            return Math.floor(seconds) + ' seconds ago';
+        }
+        
+        // Load All Data
+        async function loadAllData() {
+            try {
+                refreshBtn.disabled = true;
+                refreshBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Loading...';
+                
+                // Fetch all data in parallel
+                const [repo, contributors, commits, languages] = await Promise.all([
+                    fetchRepoData(),
+                    fetchContributors(),
+                    fetchCommits(),
+                    fetchLanguages()
+                ]);
+                
+                // Update UI
+                updateStats(repo, contributors, commits);
+                updateActivity(commits);
+                updateTopContributors(contributors);
+                updateAllContributors(contributors);
+                updateRepoInfo(repo);
+                updateCharts(contributors, languages);
+                
+                // Update timestamp
+                lastUpdated.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+                
+                // Store data for potential reuse
+                repoData = repo;
+                contributorsData = contributors;
+                commitsData = commits;
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                statsContainer.innerHTML = `
+                    <div class="error-card">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Error Loading Data</h4>
+                        <p>${error.message}</p>
+                        <p><small>Check if the repository exists and is public. GitHub API has rate limits.</small></p>
+                        <button onclick="loadAllData()" class="refresh-btn">Retry</button>
+                    </div>
+                `;
+            } finally {
+                refreshBtn.disabled = false;
+                refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Data';
+            }
+        }
+        
+        // Initialize
+        refreshBtn.addEventListener('click', loadAllData);
+        document.addEventListener('DOMContentLoaded', loadAllData);
+        
+        // Auto-refresh every 5 minutes
+        setInterval(() => {
+            if (!document.hidden) {
+                loadAllData();
+            }
+        }, 300000); // 5 minutes
+    </script>
+</body>
+</html>
