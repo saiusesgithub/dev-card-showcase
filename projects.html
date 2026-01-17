@@ -1,5 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Projects</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="Hall of Fame (1).png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Projects grid vs compact (row) view */
+      .projects-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+        padding: 0 20px 40px;
+        box-sizing: border-box;
+      }
+
+      .project-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-secondary);
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        animation: projectCardAppear 0.5s ease-out forwards;
+        animation-delay: calc(var(--project-index, 0) * 0.08s);
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @keyframes projectCardAppear {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow:
+          var(--shadow-lg),
+          0 0 20px rgba(56, 189, 248, 0.2);
+        border-color: var(--primary-color);
+      }
+
+      .project-card:hover h2 {
+        color: var(--primary-color);
+        transform: translateY(-1px);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover .project-desc {
+        transform: translateY(-1px);
+        transition: transform 0.3s ease;
+      }
+
+      .project-desc {
+        color: var(--text-secondary);
+        margin: 8px 0;
+        flex-grow: 1;
+      }
 
 <head>
   <meta charset="UTF-8" />
@@ -125,6 +201,15 @@
       .projects-container.compact-view .project-card>* {
         min-width: auto !important;
         flex: 1 1 auto;
+      .project-links {
+        margin-top: 12px;
+      }
+
+      .project-links a {
+        margin-right: 12px;
+        text-decoration: none;
+        color: var(--text-primary);
+        font-weight: 600;
       }
 
       .projects-container.compact-view .project-footer {
@@ -269,6 +354,109 @@
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
+      /* Loading indicator */
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: var(--text-secondary);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const coords = { x: 0, y: 0 };
+        const circles = document.querySelectorAll(".circle");
+
+        circles.forEach(function (circle) {
+          circle.x = 0;
+          circle.y = 0;
+        });
+
+        window.addEventListener("mousemove", function (e) {
+          coords.x = e.pageX;
+          coords.y = e.pageY - window.scrollY;
+        });
+
+        function animateCircles() {
+          let x = coords.x;
+          let y = coords.y;
+          circles.forEach(function (circle, index) {
+            circle.style.left = `${x - 12}px`;
+            circle.style.top = `${y - 12}px`;
+            circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+            const nextCircle = circles[index + 1] || circles[0];
+            circle.x = x;
+            circle.y = y;
+            x += (nextCircle.x - x) * 0.3;
+            y += (nextCircle.y - y) * 0.3;
+          });
+
+          requestAnimationFrame(animateCircles);
+        }
+
+        animateCircles();
+      });
+    </script>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">Dev Showcase</div>
+
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+        <li>
+          <a href="https://github.com/Jayanta2004" target="_blank">GitHub</a>
+        </li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="guidelines.html">Guidelines</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+    </nav>
 
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
@@ -2824,6 +3012,166 @@
     </div>
   </section>
 
+      "
+    >
+      <button id="viewToggleBtn" class="view-toggle-btn" title="Toggle view">
+        <i class="fas fa-th-large"></i>
+      </button>
+    </div>
+
+    <!-- SEARCH AND FILTER -->
+    <div class="search-filter-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search projects, tech, or contributor..."
+      />
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-tech="all">All</button>
+        <button class="filter-btn" data-tech="html">HTML</button>
+        <button class="filter-btn" data-tech="css">CSS</button>
+        <button class="filter-btn" data-tech="javascript">JavaScript</button>
+      </div>
+
+      <select id="sortSelect" class="sort-select">
+        <option value="az">A–Z</option>
+        <option value="za">Z–A</option>
+      </select>
+    </div>
+
+    <!-- PROJECTS GRID -->
+    <section class="projects-container" id="projectsContainer">
+      <div class="loading">Loading projects...</div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2026 Community Hall of Fame</p>
+      <p>Built with ❤️ by the Open Source Community</p>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script>
+      // Global variables
+      let projectsData = [];
+      let projectCards = [];
+      let activeFilter = "all";
+
+      // Load projects from JSON
+      async function loadProjects() {
+        try {
+          const response = await fetch("projects.json");
+          if (!response.ok) {
+            throw new Error("Failed to load projects");
+          }
+          projectsData = await response.json();
+          renderProjects();
+        } catch (error) {
+          console.error("Error loading projects:", error);
+          document.getElementById("projectsContainer").innerHTML =
+            '<div class="loading">Error loading projects. Please refresh the page.</div>';
+        }
+      }
+
+      // Render projects dynamically
+      function renderProjects() {
+        const container = document.getElementById("projectsContainer");
+        container.innerHTML = ""; // Clear loading message
+
+        projectsData.forEach((project, index) => {
+          const card = createProjectCard(project, index);
+          container.appendChild(card);
+        });
+
+        // Update projectCards array for search/filter/sort
+        projectCards = Array.from(document.querySelectorAll(".project-card"));
+
+        // Set up animations
+        setupAnimations();
+      }
+
+      // Create a project card element
+      function createProjectCard(project, index) {
+        const card = document.createElement("div");
+        card.className = "project-card";
+        card.style.setProperty("--project-index", index);
+
+        // Title
+        const title = document.createElement("h2");
+        title.textContent = project.title;
+        card.appendChild(title);
+
+        // Description
+        const desc = document.createElement("p");
+        desc.className = "project-desc";
+        desc.textContent = project.description;
+        card.appendChild(desc);
+
+        // Tags
+        const tagsContainer = document.createElement("div");
+        tagsContainer.className = "project-tags";
+        project.tags.forEach((tag) => {
+          const tagSpan = document.createElement("span");
+          tagSpan.textContent = tag;
+          tagsContainer.appendChild(tagSpan);
+        });
+        card.appendChild(tagsContainer);
+
+        // Links
+        const linksContainer = document.createElement("div");
+        linksContainer.className = "project-links";
+
+        if (project.links.github) {
+          const githubLink = document.createElement("a");
+          githubLink.href = project.links.github;
+          githubLink.target = "_blank";
+          githubLink.innerHTML = '<i class="fab fa-github"></i> GitHub';
+          linksContainer.appendChild(githubLink);
+        }
+
+        if (project.links.live) {
+          const liveLink = document.createElement("a");
+          liveLink.href = project.links.live;
+          liveLink.target = "_blank";
+          liveLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Live';
+          linksContainer.appendChild(liveLink);
+        }
+        card.appendChild(linksContainer);
+
+        // Footer (Author)
+        const footer = document.createElement("div");
+        footer.className = "project-footer";
+        const byText = document.createElement("span");
+        byText.textContent = "By ";
+        const authorLink = document.createElement("a");
+        authorLink.href = project.author.github;
+        authorLink.target = "_blank";
+        authorLink.textContent = project.author.name;
+        footer.appendChild(byText);
+        footer.appendChild(authorLink);
+        card.appendChild(footer);
+
+        return card;
+      }
+
+      // Setup animations
+      function setupAnimations() {
+        projectCards.forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.boxShadow =
+              "var(--shadow-lg), 0 0 25px rgba(56, 189, 248, 0.3)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.boxShadow = "var(--shadow-sm)";
+          });
+        });
+      }
+
+      // 1. Navbar Hamburger Menu Logic
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -2837,6 +3185,25 @@
     // 1. Navbar Hamburger Menu Logic
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("navLinks");
+      // 2. View Toggle (Grid vs List) Logic
+      const viewToggleBtn = document.getElementById("viewToggleBtn");
+      const projectsContainer = document.querySelector(".projects-container");
+      let isCompact = false;
+
+      if (viewToggleBtn) {
+        viewToggleBtn.addEventListener("click", () => {
+          isCompact = !isCompact;
+          projectsContainer.classList.toggle("compact-view");
+          viewToggleBtn.innerHTML = isCompact
+            ? '<i class="fas fa-th-list"></i>'
+            : '<i class="fas fa-th-large"></i>';
+        });
+      }
+
+      // 3. Search, Filter, and Sort Logic
+      const searchInput = document.getElementById("searchInput");
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const sortSelect = document.getElementById("sortSelect");
 
     if (hamburger) {
       hamburger.addEventListener("click", () => {
@@ -2943,4 +3310,86 @@
   </script>
 </body>
 
+</html>
+
+      // --- Filter Button Events ---
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          activeFilter = btn.dataset.tech;
+          runFilter(searchInput.value.toLowerCase(), activeFilter);
+        });
+      });
+
+      // --- Sort Event ---
+      sortSelect.addEventListener("change", () => {
+        const sorted = projectCards.sort((a, b) => {
+          const nameA = a.querySelector("h2").innerText.toLowerCase();
+          const nameB = b.querySelector("h2").innerText.toLowerCase();
+
+          if (sortSelect.value === "az") {
+            return nameA.localeCompare(nameB);
+          } else {
+            return nameB.localeCompare(nameA);
+          }
+        });
+
+        sorted.forEach((card) => projectsContainer.appendChild(card));
+      });
+
+      // --- Core Filtering Function ---
+      function runFilter(query, tech) {
+        projectCards.forEach((card) => {
+          const title = card.querySelector("h2").innerText.toLowerCase();
+          const tags = card
+            .querySelector(".project-tags")
+            .innerText.toLowerCase();
+          const author = card
+            .querySelector(".project-footer")
+            .innerText.toLowerCase();
+
+          const matchesSearch =
+            title.includes(query) ||
+            tags.includes(query) ||
+            author.includes(query);
+
+          const matchesTech =
+            tech === "all" || tags.includes(tech.toLowerCase());
+
+          if (matchesSearch && matchesTech) {
+            card.style.display = "";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Theme Toggle Script
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeToggle = document.getElementById("themeToggle");
+        const body = document.body;
+
+        function setTheme(theme) {
+          body.setAttribute("data-theme", theme);
+          localStorage.setItem("theme", theme);
+          themeToggle.textContent = theme === "dark" ? "🌙" : "☀️";
+        }
+
+        function toggleTheme() {
+          const currentTheme = body.getAttribute("data-theme") || "dark";
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          setTheme(newTheme);
+        }
+
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener("click", toggleTheme);
+
+        // Load projects when page loads
+        loadProjects();
+      });
+    </script>
+  </body>
 </html>

@@ -102,6 +102,7 @@
             <li><a href="contribute.html">Contribute</a></li>
             <li><a href="https://github.com/Jayanta2004" target="_blank">GitHub</a></li>
             <li><a href="projects.html">Projects</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="guidelines.html">Guidelines</a></li>
@@ -701,12 +702,33 @@
                 <a href="https://github.com/PriyanshuSingh9" class="card-btn" target="_blank">View Profile</a>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-inner">
                 <img src="images\Rudra Agrawal.png" alt=User Photo" class="card-img">
                 <h2>Rudra Agrawal</h2>
                 <span class="role">Full Stack Developer</span>
                 <p>"I am excited to make my first open-source contribution!"</p>
                 <a href="https://github.com/Cypher-0071" class="card-btn" target="_blank">View Profile</a>
             </div>
+        </div>
+
+         <div class="card">
+            <div class="card-inner">
+                <img src="images\aditya.jpg" alt=User Photo" class="card-img">
+                <h2>Aditya Kumar</h2>
+                <span class="role">Full Stack Developer</span>
+                <p>"I am excited to make my first open-source contribution!"</p>
+                <a href="https://github.com/Adityakumarchaurasiya" class="card-btn" target="_blank">View Profile</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="images/pavanakarthik.png" alt="Pavankarthik's Photo" class="card-img">
+            <h2>Pavan Karthik</h2>
+            <span class="role">Contributor</span>
+            <p>"Exploring open source through issues, PRs, and real work."</p>
+            <a href="https://github.com/pavanakarthik12" class="card-btn" target="_blank">View Profile</a>
         </div>
 
         
@@ -924,13 +946,16 @@ document.addEventListener("DOMContentLoaded", () => {
             applyFilters();
         }
 
-        document.getElementById('clearSkills').addEventListener('click', () => {
-            selectedSkills.clear();
-            document.querySelectorAll('.skill-filter-tag').forEach(tag => {
-                tag.classList.remove('active');
+        const clearSkillsBtn = document.getElementById('clearSkills');
+        if (clearSkillsBtn) {
+            clearSkillsBtn.addEventListener('click', () => {
+                selectedSkills.clear();
+                document.querySelectorAll('.skill-filter-tag').forEach(tag => {
+                    tag.classList.remove('active');
+                });
+                applyFilters();
             });
-            applyFilters();
-        });
+        }
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
@@ -957,8 +982,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <script>
         // ----- TYPEWRITER LOOP -----
+        // ----- TYPEWRITER LOOP -----
         const typewriter = document.getElementById('typewriter');
-        if (!typewriter) return;
+        
+        if (typewriter) {
 
 
         const phrases = [
@@ -1004,6 +1031,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Start typewriter
         type();
+        }
 
 
         // ----- PARALLAX EFFECT -----
@@ -1078,36 +1106,15 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 
     <script>
-        /* ---------- THEME TOGGLE SCRIPT ---------- */
-        const toggleBtn = document.getElementById("themeToggle");
-        const body = document.body;
-
-        // Load saved theme
-        if (localStorage.getItem("theme") === "light") {
-            body.classList.add("light-mode");
-            toggleBtn.textContent = "🌞";
-        }
-
-        toggleBtn.addEventListener("click", () => {
-            body.classList.toggle("light-mode");
-
-            if (body.classList.contains("light-mode")) {
-                toggleBtn.textContent = "🌞";
-                localStorage.setItem("theme", "light");
-            } else {
-                toggleBtn.textContent = "🌙";
-                localStorage.setItem("theme", "dark");
-            }
-        });
-    </script>
-    <script>
         function animateValue(element, start, end, duration) {
             let startTimestamp = null;
 
             function step(timestamp) {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                element.innerText = Math.floor(progress * (end - start) + start);
+                if (element) {
+                     element.innerText = Math.floor(progress * (end - start) + start);
+                }
                 if (progress < 1) {
                     window.requestAnimationFrame(step);
                 }
@@ -1179,6 +1186,79 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 4500);
             }
         });
+    </script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Function to set theme
+            function setTheme(theme) {
+                body.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+            }
+
+            // Function to toggle theme
+            function toggleTheme() {
+                const currentTheme = body.getAttribute('data-theme') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            }
+
+            // Load saved theme or default to dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            // Add event listener to theme toggle button
+            themeToggle.addEventListener('click', toggleTheme);
+        });
+    </script>
+
+    <!-- Card Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up staggered card animations
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.setProperty('--card-index', index);
+            });
+
+            // Add enhanced hover interactions
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // Add subtle pulse effect to the image
+                    const img = this.querySelector('.card-img');
+                    if (img) {
+                        img.style.animation = 'none';
+                        setTimeout(() => {
+                            img.style.animation = 'imagePulse 0.6s ease-in-out';
+                        }, 10);
+                    }
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    // Reset any hover states
+                    const img = this.querySelector('.card-img');
+                    if (img) {
+                        img.style.animation = '';
+                    }
+                });
+            });
+        });
+
+        // Add image pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes imagePulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 

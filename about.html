@@ -870,6 +870,7 @@
             <li><a href="contribute.html">Contribute</a></li>
             <li><a href="https://github.com/Jayanta2004" target="_blank">GitHub</a></li>
             <li><a href="projects.html">Projects</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="guidelines.html">Guidelines</a></li>
@@ -1049,13 +1050,11 @@
             animateCircles();
             
             // Load saved theme
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             const themeToggle = document.getElementById('themeToggle');
             
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-mode');
-                if (themeToggle) themeToggle.textContent = '☀️';
-            }
+            document.body.setAttribute('data-theme', savedTheme);
+            if (themeToggle) themeToggle.textContent = savedTheme === 'light' ? '☀️' : '🌙';
         });
 
         // Navbar toggle
@@ -1082,15 +1081,12 @@
         
         if (themeToggle) {
             themeToggle.addEventListener('click', function() {
-                const isLight = document.body.classList.toggle('light-mode');
+                const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 
-                if (isLight) {
-                    this.textContent = '☀️';
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    this.textContent = '🌙';
-                    localStorage.setItem('theme', 'dark');
-                }
+                document.body.setAttribute('data-theme', newTheme);
+                this.textContent = newTheme === 'light' ? '☀️' : '🌙';
+                localStorage.setItem('theme', newTheme);
             });
         }
 
