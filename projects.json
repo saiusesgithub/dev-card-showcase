@@ -3890,6 +3890,8 @@
   }
 },
 {
+    "title": "Space Invaders Retro Shooter",
+    "description": "A classic Space Invaders–style arcade game featuring a player-controlled spaceship, alien enemies, keyboard shooting mechanics, score tracking, and a lives system using HTML Canvas.",
     "title": "Retro Snake Game",
     "description": "A classic retro-style Snake game built using HTML Canvas with pixel-inspired visuals, keyboard controls, increasing difficulty, and a scoring system for an engaging learning experience.",
     "tags": [
@@ -3901,6 +3903,7 @@
         "Retro"
     ],
     "links": {
+        "live": "https://your-username.github.io/dev-card-showcase/games/space-invaders/"
         "live": "https://your-username.github.io/dev-card-showcase/games/snake/"
     },
     "author": {
