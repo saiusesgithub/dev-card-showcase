@@ -289,6 +289,25 @@
             "github": "https://github.com/omkarhole"
         }
     },
+       {
+        "title": "Brick Breaker Game",
+        "description": "A classic brick breaker game where players control a paddle to bounce a ball and break bricks. Features multiple levels, power-ups, and score tracking for an engaging gaming experience.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Quantum Physics",
+            "Probability",
+            "Visualization"
+        ],
+        "links": {
+            "live": "./projects/brick-breaker/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "File Size Converter",
         "description": "A real-time utility that converts file sizes between Bytes, KB, MB, and GB instantly. Helps users quickly calculate and understand storage sizes with a clean, interactive interface.",
@@ -3923,7 +3942,97 @@
         "name": "Amballa Sneha",
         "github": "https://github.com/Sneha-Amballa"
     }
+  },
+  {
+    "title": "Neural Network Playground",
+    "description": "An interactive machine learning visualization built with vanilla JavaScript. Features a custom matrix math engine, real-time training visualization, and architecture configuration to demonstrate neural network internals without external libraries.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Math"
+    ],
+    "links": {
+      "live": "./projects/Neural Network Playground/index.html"
+    },
+    "author": {
+      "name": "Sai",
+      "github": "https://github.com/saiusesgithub"
+    }
+  },
+  {
+    "title": "Merkle Tree Visualizer",
+    "description": "A cryptographic educational tool that visualizes how blockchains ensure data integrity. Features dynamic Merkle Tree construction using real SHA-256 hashing (Web Crypto API) and interactive tamper simulation.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Cryptography",
+      "Blockchain",
+      "Algorithms"
+    ],
+    "links": {
+      "live": "./projects/Merkle Tree Visualizer/index.html"
+    },
+    "author": {
+      "name": "Sai",
+      "github": "https://github.com/saiusesgithub"
+    }
+  },
+
+{
+        "title": "Authentication Flow Visualizer",
+        "description": "An interactive educational tool to visualize complex authentication flows (Session, JWT, OAuth) and security attacks (Replay, Expiry, Tampering). Built with vanilla HTML, CSS, and JS.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Security",
+            "Visualization"
+        ],
+        "links": {
+            "live": "./projects/Authentication Flow Visualizer/index.html"
+        },
+        "author": {
+            "name": "Sai Srujan",
+            "github": "https://github.com/saiusesgithub"
+        }
+    },
+ { "title": "RageClicker",
+  "description": "RageClicker is a fast-paced clicking game that challenges users to test their reaction speed and endurance. It offers instant visual feedback and engaging interactions using pure HTML, CSS, and JavaScript.",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Game"
+  ],
+  "links": {
+    "live": "./projects/rageClicker/index.html"
+  },
+  "author": {
+    "name": "PavanKarthik",
+    "github": "https://github.com/pavanakarthik12"
+  }
+},
+{
+  "title": "DroidOS",
+  "description": "DroidOS is a browser-based OS-style interface inspired by Android-like systems.",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "links": {
+    "live": "./projects/droidos/index.html"
+  },
+  "author": {
+    "name": "PavanKarthik",
+    "github": "https://github.com/pavanakarthik12"
+  }
 }
+
 
 
 ]
