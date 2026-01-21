@@ -4140,6 +4140,8 @@
   }
 },
 {
+    "title": "Typing Words Arcade Game",
+    "description": "A retro-style typing game where words fall from the top of the screen and players must type them correctly before they reach the bottom, featuring scoring, combos, and increasing difficulty.",
     "title": "Flappy Bird Retro Game",
     "description": "A Flappy Bird–style retro arcade game featuring gravity-based movement, keyboard-controlled jumps, random pipe generation, and distance-based scoring built using HTML Canvas.",
     "title": "Maze Collector Retro Game",
@@ -4150,6 +4152,8 @@
         "JavaScript",
         "Canvas",
         "Game",
+        "Retro",
+        "Typing"
         "Retro"
         "Retro",
         "Maze"
