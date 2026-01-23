@@ -4667,8 +4667,10 @@
     }
 },
 {
-    "title": "Rat Escape",
-    "description": "Navigate randomly generated mazes to the exit using WASD or arrow keys. Procedural mazes with timer scoring for fastest escape.",
+    "title": "Color Match Rush",
+    "description": "A timed color-matching puzzler where you swap tiles to match 3-in-a-row with cascading matches under timer pressure. Mouse/touch drag input.",
+    "title": "Rhythm Tapper",
+    "description": "A simple rhythm-timing game where you tap notes on the beat for a streak score. Falling notes; tap on beat; streak multiplier. Keyboard or click input.",
     "tags": [
         "HTML",
         "CSS",
@@ -4676,7 +4678,8 @@
         "Game"
     ],
     "links": {
-        "live": "./projects/rat-escape/index.html"
+        "live": "./projects/color-match-rush/index.html"
+        "live": "./projects/rhythm-tapper/index.html"
     },
     "author": {
         "name": "Gupta-02",
