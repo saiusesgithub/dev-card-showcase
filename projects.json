@@ -16,6 +16,22 @@
             "github": "https://github.com/Sneha-Amballa"
         }
     },
+            {
+        "title": "Physics Sandbox",
+        "description": "A physics simulation sandbox with interactive controls and visualizations.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/physics-sandbox/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
      {
         "title": "JSON Formattor",
         "description": "A utility tool to format and minify JSON data with a user-friendly interface and live preview.",
@@ -31,6 +47,22 @@
         "author": {
             "name": "Omkar",
             "github": "https://github.com/omkarhole"
+        }
+    },
+                {
+        "title": "Memory Game",
+        "description": "A classic memory card matching game with multiple themes and difficulty levels.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/memory-game/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
         }
     },
      {
@@ -191,6 +223,7 @@
             "github": "https://github.com/neeru24"
         }
     },
+    {
     "title": "PDF Watermark Tool",
     "description": "Browser-based tool to add text/image watermarks to PDFs with full customization. Process files locally for privacy.",
     "tags": [
@@ -3783,10 +3816,12 @@
             "github": "https://github.com/Sneha-Amballa"
         }
     },
-
+/// Bubbble Ppop Blitzzzzzzzzzzzz
     {
         "title": "Stack Builder",
         "description": "Timing-based stacking game with precision overlap where you drop moving blocks to build the tallest aligned tower—miss the overlap and it tumbles.",
+        "title": "Bubble Pop Blitz",
+        "description": "Timed click-to-pop accuracy challenge where you pop as many drifting bubbles as you can before the 30-second timer ends.",
         "tags": [
             "HTML",
             "CSS",
@@ -3795,6 +3830,7 @@
         ],
         "links": {
             "live": "./projects/stack-builder/index.html"
+            "live": "./projects/bubble-pop-blitz/index.html"
         },
         "author": {
             "name": "Gupta-02",
@@ -4611,6 +4647,22 @@
         "name":"PavanKarthik",
         "github":"https://github.com/pavanakarthik12"
     }
-}
-
+},
+    {
+        "title": "Pixel Painter",
+        "description": "A grid-based pixel art creator with color picker, clear function, and export to PNG. Paint pixel art on a 32x32 grid with mouse or touch.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Art Tool"
+        ],
+        "links": {
+            "live": "./projects/pixel-painter/index.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    }
 ]
