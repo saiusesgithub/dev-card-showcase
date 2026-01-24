@@ -1,5 +1,23 @@
 [
     {
+        "title": "Pac-Man Inspired Maze",
+        "description": "A maze-based game inspired by Pac-Man where players collect dots while avoiding enemy ghosts. Features grid-based movement, score tracking, and simple AI for enemies.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Game",
+            "Canvas"
+        ],
+        "links": {
+            "live": "./pacman.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/Sneha-Amballa"
+        }
+    },
+    {
         "title": "Symon Says Game",
         "description": "A fun and interactive memory game where players must repeat increasingly complex sequences of colors and sounds. Features multiple difficulty levels, score tracking, and engaging animations.",
         "tags": [
