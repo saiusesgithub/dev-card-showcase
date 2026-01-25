@@ -5624,6 +5624,15 @@
     }
 },
 {
+    "title":"chromawave",
+    "description": "A JavaScript library for creating chroma-style visualizations. It provides a simple and intuitive way to define and work with chroma-style visualizations in your JavaScript applications.",
+    "tags": [
+        "JavaScript",
+        "Chroma Visualization",
+        "Library"
+    ],
+    "links": {
+        "live": "./projects/chromawave/index.html"
     "title" : "Businessjs",
     "description": "A JavaScript library for creating business-style visualizations. It provides a simple and intuitive way to define and work with business-style visualizations in your JavaScript applications.",
     "tags": [
