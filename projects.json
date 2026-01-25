@@ -16,6 +16,37 @@
             "github": "https://github.com/omkarhole"
         }
     },
+     {
+        "title": "Fading snake game",
+        "description": "Simple Fading snake game.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Utility Tool"
+        ],
+        "links": {
+            "live": "./projects/fading-snake/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        {
+        "title": "Pet Name Generator",
+        "description": "A fun web application that generates unique and creative pet names based on user-selected criteria such as pet type, personality traits, and themes.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/pet-name-generator/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
     {
         "title": "Advanced Text Case Converter",
         "description": "A powerful text utility that converts text into multiple cases including uppercase, lowercase, sentence case, title case, and toggle case with live preview, undo history, and keyboard shortcuts.",
@@ -47,6 +78,38 @@
         "author": {
             "name": "Neeru",
             "github": "https://github.com/neeru24"
+        }
+    },
+            {
+        "title": "Code Snippet Manager",
+        "description": "A web application that allows users to save, organize, and manage code snippets in various programming languages. Features include syntax highlighting, categorization, and search functionality for easy retrieval of snippets.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/code-snippet-manager/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
+      {
+        "title": "HSL Color Game",
+        "description": "An engaging color guessing game where players identify colors based on their HSL values. Features multiple levels, score tracking, and a vibrant user interface.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/hsl-color-game/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
         }
     },
     {
@@ -82,6 +145,24 @@
             "github": "https://github.com/omkarhole"
         }
     },
+       {
+        "title": "Virtual Keyboard",
+        "description": "An interactive virtual keyboard that allows users to type using on-screen keys, complete with visual feedback and support for multiple keyboard layouts.",
+        {
+              "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/virtual-keyboard/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+           
+        }
+           },
     {
         "title": "Memory Game",
         "description": "A classic memory card matching game with multiple themes and difficulty levels.",
@@ -296,6 +377,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+        {
+        "title": "Code Snippet Manager",
+        "description": "A web application that allows users to save, organize, and manage code snippets in various programming languages. Features include syntax highlighting, categorization, and search functionality for easy retrieval of snippets.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/code-snippet-manager/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
     {
         "title": "PDF Watermark Tool",
         "description": "Browser-based tool to add text/image watermarks to PDFs with full customization. Process files locally for privacy.",
@@ -330,6 +427,22 @@
         "author": {
             "name": "Omkar",
             "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "AI Story Generator",
+        "description": "A web application that generates creative stories based on user-provided nouns.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/story-generator/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
         }
     },
     {
@@ -432,6 +545,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+        {
+        "title": "Personality Generator",
+        "description": "A web application that generates unique personality descriptions based on user input and predefined traits.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/personality-generator/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
     {
         "title": "2048 – Luxury Edition",
         "description": "A modern and visually refined version of the classic 2048 puzzle game featuring smooth tile animations, glassmorphism-inspired design, responsive controls, and score tracking for a satisfying and polished gameplay experience.",
@@ -462,6 +591,38 @@
         "author": {
             "name": "Omkar",
             "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Pet Name Generator",
+        "description": "A fun web application that generates unique and creative pet names based on user-selected criteria such as pet type, personality traits, and themes.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/pet-name-generator/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
+    {
+        "title": "Country Info App",
+        "description": "A web application that provides detailed information about countries worldwide. Users can search for countries, view their flags, capitals, populations, and other relevant data fetched from a public API.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/country-info-app/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
         }
     },
     {
@@ -528,6 +689,22 @@
         "author": {
             "name": "Omkar",
             "github": "https://github.com/omkarhole"
+        }
+    },
+        {
+        "title": "Catch the Ball Game",
+        "description": "An exciting game where players control a basket to catch falling balls while avoiding obstacles. Features increasing difficulty levels, score tracking, and engaging gameplay.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/catch-the-falling-objects/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
         }
     },
     {
@@ -1860,6 +2037,22 @@
         }
     },
     {
+        "title": "Tilting Maze Game",
+        "description": "A maze game where players navigate a ball through a maze by tilting their device or using arrow keys, avoiding obstacles and reaching the goal.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/tilting-maze/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
         "title": "Typing speed test",
         "description": "A web-based typing speed test that measures words per minute (WPM) and accuracy. Features a countdown timer, real-time feedback, and a summary of results at the end.",
         "tags": [
@@ -1907,6 +2100,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+      {
+        "title": "Smart classroom timetable",
+        "description": "A web application that helps students manage their class schedules effectively by providing a clear and organized timetable view.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/smart-timetable/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Whack a Project",
         "description": "A fun and interactive Whack-a-Mole style game where players click on appearing targets to score points within a time limit.",
@@ -1920,6 +2129,22 @@
         },
         "author": {
             "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+     {
+        "title": "Dsa cheat sheet",
+        "description": "A comprehensive DSA cheat sheet that provides quick reference to common data structures and algorithms, including their time and space complexities.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/dsa-cheat-sheet/index.html"
+        },
+        "author": {
+            "name": "omkar",
             "github": "https://github.com/omkarhole"
         }
     },
@@ -1955,6 +2180,23 @@
             "github": "https://github.com/omkarhole"
         }
     },
+  {
+        "title": "motion Engine Lab",
+        "description": "A web application that allows users to create and simulate various motion effects using physics principles like gravity, friction, and acceleration.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links":{
+            "live": "./projects/motion-engine-lab/index.html"
+        },
+        "author": {
+            "name": "omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+  
     {
         "title": "Virtual Control Pannel",
         "description": "A virtual control panel that simulates various controls like buttons, switches, and sliders for interactive user experiences.",
@@ -1965,6 +2207,38 @@
         ],
         "links": {
             "live": "./projects/Virtual_Control_Panel/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "interview schedular",
+        "description": "A web application that helps users schedule and manage interviews with features like calendar integration, reminders, and candidate tracking.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/interview-schedular/index.html"
+        },
+        "author": {
+            "name": "omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+      {
+        "title": "AI chatbot",
+        "description": "A web application that simulates a simple AI chatbot using predefined responses to user inputs.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/AI-ChatBot/index.html"
         },
         "author": {
             "name": "Omkar",
