@@ -5448,6 +5448,15 @@
     }
 },
 {
+    "title" : "javalitejs",
+    "description": "A JavaScript library for creating java-like classes and objects. It provides a simple and intuitive way to define and work with java-like classes and objects in your JavaScript applications.",
+    "tags": [
+        "JavaScript",
+        "Java-like Classes",
+        "Library"
+    ],
+    "links": {
+        "live": "./projects/javalitejs/index.html"
     "title": "Livetypingaura",
     "description": "A live typing game where users must type a sentence as fast and accurately as possible. Features timer, scoring system, and typing accuracy calculation.",
     "tags": [
