@@ -6060,6 +6060,27 @@
     }
   },
   {
+    "title": "Retro Racing (Top-Down)",
+    "description": "A top-down retro racing game where players avoid obstacles and survive as long as possible. Features vertical scrolling road, player-controlled car, random obstacle spawning, and score based on survival time with increasing difficulty.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Game",
+      "Canvas",
+      "Retro",
+      "Racing",
+      "Arcade"
+    ],
+    "links": {
+      "live": "./projects/retro-racing/"
+    },
+    "author": {
+      "name": "Sneha-Amballa",
+      "github": "https://github.com/Sneha-Amballa"
+    }
+  },
+  {
     "title": "Skyrail Surfer (3D)",
     "description": "Grind and jump across floating rails high above the clouds in this fast-paced 3D game. Auto-grind rails, manual jumps, mid-air tricks for score.",
     "tags": ["HTML", "CSS", "JavaScript", "Three.js", "Game", "3D"],
