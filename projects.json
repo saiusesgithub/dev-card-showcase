@@ -1266,6 +1266,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+            {
+        "title": "Sleep Tracker",
+        "description": "A sleep tracking application that helps users monitor their sleep patterns, set sleep goals, and receive personalized tips for better rest.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/SleepTracker/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
         {
         "title": "Spot the Difference Game",
         "description": "A fun and challenging game where players must find differences between two similar images within a time limit. Features multiple levels and score tracking.",
